@@ -4,12 +4,16 @@ import 'package:minesweeper/constants/appStyle.dart';
 class EmptyTile extends StatelessWidget {
   final int near;
   final bool status;
+  final bool flagged;
   final void Function()? onTap;
+  final void Function()? onLongPress;
   const EmptyTile(
       {super.key,
       required this.near,
       required this.status,
-      required this.onTap});
+      required this.onTap,
+      required this.flagged,
+      required this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +39,14 @@ class EmptyTile extends StatelessWidget {
 
     return GestureDetector(
       onTap: onTap,
+      onLongPress: onLongPress,
       child: Container(
         color: status ? AppStyle.tileInactiveColor : AppStyle.tileActiveColor,
-        child: status ? Center(child: styledText(near)) : null,
+        child: status
+            ? Center(child: styledText(near))
+            : flagged
+                ? Icon(Icons.flag)
+                : null,
       ),
     );
   }

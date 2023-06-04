@@ -114,6 +114,12 @@ class _MainScreenState extends State<MainScreen> {
                       child: bombLocation.contains(index)
                           ? BombTile(
                               revealed: revealed,
+                              onLongPress: () {
+                                setState(() {
+                                  gridStat[index][2] = !gridStat[index][2];
+                                });
+                              },
+                              flagged: gridStat[index][2],
                               onTap: revealed
                                   ? () {}
                                   : () {
@@ -128,6 +134,7 @@ class _MainScreenState extends State<MainScreen> {
                           : EmptyTile(
                               near: gridStat[index][0],
                               status: gridStat[index][1],
+                              flagged: gridStat[index][2],
                               onTap: revealed
                                   ? () {}
                                   : () {
@@ -143,7 +150,14 @@ class _MainScreenState extends State<MainScreen> {
                                             builder: (context) =>
                                                 Victory(context, gameStart));
                                       }
-                                    }));
+                                      gridStat[index][2] = false;
+                                    },
+                              onLongPress: () {
+                                setState(() {
+                                  gridStat[index][2] = !gridStat[index][2];
+                                });
+                              },
+                            ));
                 }),
           ),
         )),

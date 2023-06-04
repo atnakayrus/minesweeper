@@ -89,7 +89,7 @@ class GameLogic {
           nearBombs++;
         }
       }
-      status.add([nearBombs, false]);
+      status.add([nearBombs, false, false]);
     }
     return (status);
   }
