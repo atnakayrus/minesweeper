@@ -166,7 +166,7 @@ class _MainScreenState extends State<MainScreen> {
         Container(
           color: AppStyle.accentColor,
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 50),
-          height: 180,
+          height: 120,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
